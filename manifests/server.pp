@@ -1,7 +1,7 @@
 class ldap::server {
   # Ensure the necessary package is installed
   package { 'slapd':
-    ensure => installed,
+    ensure => absent,
   }
 
   # present the configuration to avoid the interactive prompts during installation
