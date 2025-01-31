@@ -1,0 +1,5 @@
+dn: cn=admin,dc=home,dc=lab
+objectClass: organizationalRole
+cn: admin
+description: LDAP Administrator for home.lab
+
