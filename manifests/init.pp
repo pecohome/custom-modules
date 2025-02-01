@@ -1,5 +1,5 @@
 class pecohome_ldap {
-  include openldap
+#  include openldap
 
   class { 'openldap::server':
     ensure         => present,
