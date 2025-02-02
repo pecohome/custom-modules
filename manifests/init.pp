@@ -1,5 +1,5 @@
 class pecohome_ldap {
-#  include openldap
+  include inifile
 
   class { 'openldap::server': }
 
