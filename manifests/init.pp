@@ -9,13 +9,6 @@ class pecohome_ldap {
     rootpw  => lookup('openldap::root_password'),
   }
 
-  # Ensure OpenLDAP service is running
-  service { 'slapd':
-    ensure  => running,
-    enable  => true,
-    require => Class['openldap::server'],
-  }
-
   # Add admin user
   openldap::server::schema { 'admin':
     ensure => present,
