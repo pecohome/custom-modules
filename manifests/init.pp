@@ -1,27 +1,20 @@
 class pecohome_ldap {
 #  include openldap
 
-  class { 'openldap::server':
-    ensure         => present,
-    root_dn        => 'cn=admin,dc=home,dc=lab',
-    root_password  => lookup('openldap::root_password'),
-    suffix         => 'dc=home,dc=lab',
-    access         => [
-      'to attrs=userPassword by self write by anonymous auth by dn="cn=admin,dc=home,dc=lab" write by * none',
-      'to * by self write by dn="cn=admin,dc=home,dc=lab" write by * read',
-    ],
+  class { 'openldap::server': }
+
+  openldap::server::database { 'dc=home,dc=lab':
+    ensure => present,
+    directory => '/var/lib/ldap',
+    rootdn    => 'cn=admin,dc=home,dc=lab',
+    rootpw  => lookup('openldap::root_password'),
   }
 
   # Ensure OpenLDAP service is running
   service { 'slapd':
     ensure  => running,
     enable  => true,
-#    require => Class['openldap::server'],
-  }
-
-  # Create an organizational unit
-  openldap::server::database { 'dc=home,dc=lab':
-    ensure => present,
+    require => Class['openldap::server'],
   }
 
   # Add admin user
