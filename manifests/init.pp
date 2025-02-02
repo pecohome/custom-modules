@@ -1,7 +1,5 @@
 class pecohome_ldap {
 
-  class { 'inifile': }
-
   class { 'openldap::server': }
 
   openldap::server::database { 'dc=home,dc=lab':
