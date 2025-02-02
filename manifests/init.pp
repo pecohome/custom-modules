@@ -12,6 +12,6 @@ class pecohome_ldap {
   # Add admin user
   openldap::server::schema { 'admin':
     ensure => present,
-    ldif   => template('openldap/admin.ldif'),
+    ldif   => template('openldap/admin.ldif.epp'),
   }
 }
