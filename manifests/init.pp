@@ -16,7 +16,7 @@ class pecohome_ldap {
   service { 'slapd':
     ensure  => running,
     enable  => true,
-    require => Class['openldap::server'],
+#    require => Class['openldap::server'],
   }
 
   # Create an organizational unit
